@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/floating_dialog"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:divider="@drawable/divider"
+    android:layout_margin="16dp"
+    app:showDividers="middle">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/floating_menu_mocklocation"
+        android:gravity="center_vertical"
+        style="@style/Base.TextAppearance.AppCompat.Menu"
+        android:paddingLeft="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/floating_menu_http"
+        android:gravity="center_vertical"
+        style="@style/Base.TextAppearance.AppCompat.Menu"
+        android:paddingLeft="16dp"
+        />
+</android.support.v7.widget.LinearLayoutCompat>

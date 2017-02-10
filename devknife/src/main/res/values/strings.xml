@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DevKnife</string>
+
+    <!-- floating menu -->
+    <string name="floating_menu_mocklocation">模拟位置</string>
+    <string name="floating_menu_http">http信息</string>
+</resources>

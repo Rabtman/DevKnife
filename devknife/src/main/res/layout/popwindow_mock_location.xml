@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:id="@+id/ctl_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp">
+
+        <TableRow>
+
+            <android.support.v4.widget.Space />
+
+            <Button
+                android:id="@+id/move_up"
+                android:text="↑" />
+
+            <android.support.v4.widget.Space />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/move_left"
+                android:text="←" />
+
+            <android.support.v4.widget.Space />
+
+            <Button
+                android:id="@+id/move_right"
+                android:text="→" />
+        </TableRow>
+
+        <TableRow>
+
+            <android.support.v4.widget.Space />
+
+            <Button
+                android:id="@+id/move_down"
+                android:text="↓" />
+
+            <android.support.v4.widget.Space />
+        </TableRow>
+    </TableLayout>
+
+    <android.support.v4.widget.Space
+        android:id="@+id/space1"
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/ctl_layout"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_lat"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ctl_layout"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/mock_location_lat" />
+
+    <EditText
+        android:id="@+id/edit_lat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ctl_layout"
+        android:layout_toLeftOf="@id/space1"
+        android:layout_toRightOf="@id/tv_lat"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="223.12345678" />
+
+    <TextView
+        android:id="@+id/tv_log"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ctl_layout"
+        android:layout_toRightOf="@id/space1"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/mock_location_lat" />
+
+    <EditText
+        android:id="@+id/edit_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ctl_layout"
+        android:layout_toRightOf="@id/tv_log"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="223.12345678" />
+
+    <ImageView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/space1"
+        android:layout_marginBottom="10dp"
+        android:background="#000000" />
+</RelativeLayout>

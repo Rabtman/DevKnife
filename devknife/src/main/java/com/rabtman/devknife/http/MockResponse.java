@@ -13,6 +13,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
+/**
+ * @author Rabtman
+ */
 public class MockResponse {
 
     private static volatile MockResponse sInst = null;

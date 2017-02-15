@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.LayoutRes;
 import android.support.v4.widget.ViewDragHelper;
-import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.rabtman.devknife.MockLocationPopWindow;
 import com.rabtman.devknife.R;
 
 import java.util.Observable;
@@ -28,13 +29,14 @@ public class FloatingDragger implements Observer {
     FloatingDraggedView floatingDraggedView;
 
     private Context mContext;
+    private View floatingView;
 
     public FloatingDragger(Context context, @LayoutRes int layoutResID) {
         mContext = context;
         // 用户布局
         View contentView = LayoutInflater.from(context).inflate(layoutResID, null);
         // 悬浮球按钮
-        View floatingView = LayoutInflater.from(context).inflate(R.layout.layout_floating_dragger, null);
+        floatingView = LayoutInflater.from(context).inflate(R.layout.layout_floating_dragger, null);
 
         // ViewDragHelper的ViewGroup容器
         floatingDraggedView = new FloatingDraggedView(context);
@@ -62,7 +64,28 @@ public class FloatingDragger implements Observer {
         }
     }
 
+    static class PositionObservable extends Observable {
+        public static PositionObservable sInstance;
+
+        public static PositionObservable getInstance() {
+            if (sInstance == null) {
+                sInstance = new PositionObservable();
+            }
+            return sInstance;
+        }
+
+        /**
+         * 通知观察者FloatingDragger
+         */
+        public void update() {
+            setChanged();
+            notifyObservers();
+        }
+    }
+
     public class FloatingDraggedView extends FrameLayout {
+        public static final String KEY_FLOATING_X = "KEY_FLOATING_X";
+        public static final String KEY_FLOATING_Y = "KEY_FLOATING_Y";
         ViewDragHelper dragHelper;
         SharedPreferences sp = getContext().getSharedPreferences("FloatingDraggedView", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
@@ -174,9 +197,6 @@ public class FloatingDragger implements Observer {
             });
         }
 
-        public static final String KEY_FLOATING_X = "KEY_FLOATING_X";
-        public static final String KEY_FLOATING_Y = "KEY_FLOATING_Y";
-
         @Override
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
@@ -211,7 +231,7 @@ public class FloatingDragger implements Observer {
          * 显示菜单
          */
         public void showMenuDialog() {
-
+            new MockLocationPopWindow(mContext).showAtLocation(floatingView, 0, 0, Gravity.CENTER);
         }
 
         /**
@@ -245,24 +265,6 @@ public class FloatingDragger implements Observer {
             if (dragHelper.continueSettling(true)) {
                 invalidate();
             }
-        }
-    }
-
-    static class PositionObservable extends Observable {
-        public static PositionObservable sInstance;
-        public static PositionObservable getInstance() {
-            if (sInstance == null) {
-                sInstance = new PositionObservable();
-            }
-            return sInstance;
-        }
-
-        /**
-         * 通知观察者FloatingDragger
-         */
-        public void update() {
-            setChanged();
-            notifyObservers();
         }
     }
 }

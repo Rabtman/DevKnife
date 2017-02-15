@@ -4,4 +4,7 @@
     <!-- floating menu -->
     <string name="floating_menu_mocklocation">模拟位置</string>
     <string name="floating_menu_http">http信息</string>
+
+    <string name="mock_location_lat">纬度：</string>
+    <string name="mock_location_log">经度：</string>
 </resources>
